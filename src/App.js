@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { LandingPage } from "./views/landingPage";
+import { AppLayout } from "./views/appLayout";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { ProtectedRoute } from "./protectedRoute";
 
 function App() {
+  const [auth, useAuth] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <div className="App">
+          <h1>Protected React Router</h1>
+          <Route
+            exact
+            path="/"
+            render={(props) => <LandingPage {...props} useAuth={useAuth} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/app"
+            useAuth={useAuth}
+            auth={auth}
+            component={AppLayout}
+          />
+        </div>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

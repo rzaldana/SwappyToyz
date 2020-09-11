@@ -1,0 +1,19 @@
+.img-container {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 2em;
+}
+
+.img-container:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5em;
+}

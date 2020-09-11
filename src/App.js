@@ -1,30 +1,33 @@
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { LandingPage } from "./views/landingPage";
-import { AppLayout } from "./views/appLayout";
+import { Login } from "./views/login";
+import { HomePage } from "./views/homePage";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ProtectedRoute } from "./protectedRoute";
 
 function App() {
-  const [auth, useAuth] = useState(false);
-
+  const [auth, setAuth] = useState(true);
+  const [user, setUser] = useState({
+    name: "Jane Doe",
+    photo: "../img/jane-doe.png",
+  });
+  const [Queue, setQueue] = useState([]);
   return (
     <BrowserRouter>
       <Switch>
         <div className="App">
-          <h1>Protected React Router</h1>
           <Route
             exact
             path="/"
-            render={(props) => <LandingPage {...props} useAuth={useAuth} />}
+            render={(props) => <Login {...props} setAuth={setAuth} />}
           />
           <ProtectedRoute
-            exact
             path="/app"
-            useAuth={useAuth}
+            setAuth={setAuth}
             auth={auth}
-            component={AppLayout}
+            user={user}
+            component={HomePage}
           />
         </div>
       </Switch>

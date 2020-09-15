@@ -27,7 +27,7 @@ export const Login = (props) => {
                   variant="primary"
                   onClick={() => {
                     props.setAuth(true);
-                    props.history.push("/app");
+                    props.history.push("/go");
                   }}
                   style={{ width: "100%" }}
                 >

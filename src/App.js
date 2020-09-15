@@ -9,6 +9,7 @@ import { ProtectedRoute } from "./protectedRoute";
 function App() {
   const [auth, setAuth] = useState(true);
   const [user, setUser] = useState({
+    id: 123,
     name: "Jane Doe",
     photo: "../img/jane-doe.png",
   });
@@ -29,6 +30,9 @@ function App() {
             user={user}
             component={HomePage}
           />
+          <Route path="/go">
+            <HomePage user={user} />
+          </Route>
         </div>
       </Switch>
     </BrowserRouter>

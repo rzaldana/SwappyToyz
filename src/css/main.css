@@ -10,10 +10,56 @@
   display: block;
   padding-bottom: 100%;
 }
+.img-container-card {
+  position: relative;
+  width: 60%;
+  text-align: left;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-container-card:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.owner-pic {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.owner-pic:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
 
 .content {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 0.5em;
+  object-fit: cover;
+}
+
+.content-owner-pic {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.banner {
+  position: absolute;
+}
+
+.boton:focus {
+  background-color: transparent;
 }

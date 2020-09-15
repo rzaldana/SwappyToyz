@@ -1,5 +1,8 @@
 import React from "react";
 
 export const SavedToys = (props) => {
-  return <h1>This is the saved toys</h1>;
+  console.log("Saved Toys");
+  console.log(props.savedToys);
+  console.log(props.getSavedToys());
+  return props.savedToys.map((toy) => <p>{toy}</p>);
 };

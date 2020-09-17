@@ -1,18 +1,3 @@
-function importAll(r) {
-  let images = {};
-  r.keys().map((item, index) => {
-    images[item.replace("./", "")] = r(item);
-  });
-  return images;
-}
-
-const toyImages = importAll(
-  require.context("./../img/random_toys", false, /\.(png|jpe?g|svg)$/)
-);
-
-const ownerImages = importAll(
-  require.context("./owner-images", false, /\.(png|jpe?g|svg)$/)
-);
 const toyNames = [
   "Spaceman",
   "Beach toy truck",
@@ -52,11 +37,14 @@ const toyDescriptions = [
   "An enormous set of lego bricks that are collecting dust in our home",
 ];
 
+const imageUrl =
+  "https://swappytoyz-assets.s3.ca-central-1.amazonaws.com/toy-images/";
+
 const toys = [];
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
   toys.push({
     id: i,
-    image: toyImages[(i + 1).toString() + ".jpg"],
+    image: imageUrl + (i + 1).toString() + ".jpg",
     name: toyNames[i],
     tags: toyTags[i],
     ownerId: i % 5,

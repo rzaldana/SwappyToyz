@@ -5,6 +5,7 @@ import { Login } from "./views/login";
 import { HomePage } from "./views/homePage";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ProtectedRoute } from "./protectedRoute";
+import { Main } from "./components/main";
 
 function App() {
   const [auth, setAuth] = useState(true);
@@ -18,21 +19,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <div className="App">
-          <Route
-            exact
-            path="/"
-            render={(props) => <Login {...props} setAuth={setAuth} />}
-          />
-          <ProtectedRoute
-            path="/app"
-            setAuth={setAuth}
-            auth={auth}
-            user={user}
-            component={HomePage}
-          />
-          <Route path="/go">
-            <HomePage user={user} />
-          </Route>
+          <HomePage user={user}>
+            <Route exact path="/hi">
+              <Main></Main>
+            </Route>
+          </HomePage>
         </div>
       </Switch>
     </BrowserRouter>

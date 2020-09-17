@@ -1,0 +1,23 @@
+.owner-pic {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.owner-pic:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.content-owner-pic {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 25%;
+  border-radius: 50%;
+  object-fit: cover;
+}

@@ -13,6 +13,7 @@ import Alert from "react-bootstrap/Alert";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Spinner from "react-bootstrap/Spinner";
+import { Link } from "react-router-dom";
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => {
@@ -25,6 +26,7 @@ const toyImages = importAll(
   require.context("./../img/random_toys", false, /\.(png|jpe?g|svg)$/)
 );
 var banner = ""; //<h1 className="banner">Hiya</h1>;
+var bannerUserId;
 var bannerUserName = "";
 var bannerUserPic = "";
 
@@ -40,7 +42,9 @@ export const Main = (props) => {
 
   const [showAlert, setShowAlert] = useState(false);
 
-  const [ownerPicLoading, ownerPicLoaded] = useState(true);
+  const [ownerPicLoaded, setOwnerPicLoaded] = useState(false);
+  const [toyPicLoaded, setToyPicLoaded] = useState(false);
+  const [allPicsLoaded, setAllPicsLoaded] = useState(false);
 
   const currentToy = props.toy;
 
@@ -115,7 +119,28 @@ export const Main = (props) => {
           <div className="col-sm-7">
             <Card>
               <div className="img-container-card">
-                <img src={currentToy.image} className="content" />
+                <div
+                  style={{
+                    opacity: toyPicLoaded ? "0" : "1",
+                    position: "relative",
+                    top: "100%",
+                    right: "100%",
+                  }}
+                >
+                  <Spinner
+                    animation="border"
+                    role="status"
+                    style={{ position: "absolute" }}
+                  >
+                    <span className="sr-only">Loading...</span>
+                  </Spinner>
+                </div>
+                <img
+                  src={currentToy.image}
+                  onLoad={() => setToyPicLoaded(true)}
+                  className="content"
+                  style={{ opacity: toyPicLoaded ? "1" : "0" }}
+                />
               </div>
               <Card.Body>
                 <div className="container-fluid">
@@ -174,6 +199,8 @@ export const Main = (props) => {
                       >
                         <Button
                           onClick={() => {
+                            bannerUserId = currentToy.ownerId;
+
                             bannerUserName = props.getUserName(
                               currentToy.ownerId
                             );
@@ -183,6 +210,7 @@ export const Main = (props) => {
                               currentToy.ownerId
                             );
                             if (props.userMatch(currentToy.ownerId)) {
+                              props.addToConversations(currentToy.ownerId);
                               handleShow();
                             }
 
@@ -220,8 +248,17 @@ export const Main = (props) => {
                   <h5>{props.getUserName(currentToy.ownerId)}</h5>
                 </div>
                 <div className="col-sm-4 p-0">
-                  <div style={{ display: ownerPicLoading ? "block" : "none" }}>
-                    <Spinner animation="border" role="status">
+                  <div
+                    style={{
+                      opacity: ownerPicLoaded ? "0" : "1",
+                      position: "relative",
+                    }}
+                  >
+                    <Spinner
+                      animation="border"
+                      role="status"
+                      style={{ position: "absolute" }}
+                    >
                       <span className="sr-only">Loading...</span>
                     </Spinner>
                   </div>
@@ -229,7 +266,7 @@ export const Main = (props) => {
                     <img
                       src={props.getUserPic(currentToy.ownerId)}
                       className="content-owner-pic"
-                      onLoad={() => ownerPicLoaded(false)}
+                      onLoad={() => setOwnerPicLoaded(true)}
                     />
                   </div>
                 </div>
@@ -249,44 +286,57 @@ export const Main = (props) => {
         </div>
         ;
       </div>
+      <div style={{ position: "relative" }}>
+        <Modal
+          show={showBanner}
+          onHide={handleClose}
+          className="text-center"
+          style={{ position: "absolute" }}
+        >
+          <Modal.Body>
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-12 mt-3">
+                  <FontAwesomeIcon
+                    className="m-auto"
+                    icon={faCheck}
+                    size="3x"
+                    color="#1BAB08"
+                  />
+                </div>
+              </div>
+              <div className="row mt-3 mb-4">
+                <div className="col-12">
+                  {bannerUserName} also liked one of your toys!
+                </div>
+              </div>
 
-      <Modal show={showBanner} onHide={handleClose} className="text-center">
-        <Modal.Body>
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-12 mt-3">
-                <FontAwesomeIcon
-                  className="m-auto"
-                  icon={faCheck}
-                  size="3x"
-                  color="#1BAB08"
-                />
+              <div className="row">
+                <div className="col-4 img-container-card p-2">
+                  <img src={bannerToyPic} className="content" />
+                </div>
+                <div className="col-4 img-container-card">
+                  <img src={bannerUserPic} className="content-owner-pic" />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      handleClose();
+                    }}
+                  >
+                    <Link className="router-link" to="/conversations">
+                      Start a Conversation
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
-            <div className="row mt-3 mb-4">
-              <div className="col-12">
-                {bannerUserName} also liked one of your toys!
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-4 img-container-card p-2">
-                <img src={bannerToyPic} className="content" />
-              </div>
-              <div className="col-4 img-container-card">
-                <img src={bannerUserPic} className="content-owner-pic" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <Button variant="primary" onClick={handleClose}>
-                  Start a Conversation
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+          </Modal.Body>
+        </Modal>
+      </div>
     </React.Fragment>
   );
 };

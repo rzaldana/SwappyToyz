@@ -5,6 +5,7 @@ import { Main } from "./components/main";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { SavedToys } from "./components/savedToys";
+import { Conversations } from "./components/conversations.jsx";
 
 const toys = require("./toys/toys.js");
 const users = require("./users/users.jsx");
@@ -21,6 +22,11 @@ function App() {
 
   const [currentToy, setCurrentToy] = useState(toys[1]);
   const [savedToys, setSavedToys] = useState(new Set());
+  const [conversations, setConversations] = useState(new Set());
+
+  const addToConversations = (userId) => {
+    setConversations((convos) => new Set(convos).add(userId));
+  };
 
   const addToSavedToys = (toyId) => {
     console.log("Adding Toy");
@@ -59,6 +65,10 @@ function App() {
     return users[id].match;
   };
 
+  const getUser = (id) => {
+    return users[id];
+  };
+
   // end of defintions from HomePage
 
   return (
@@ -69,15 +79,23 @@ function App() {
         <div>
           <Navbar expand="lg" variant="dark" className="color-nav">
             <Navbar.Brand>
-              <Link to="/">SwappyToyz</Link>
+              <Link className="router-link" to="/">
+                SwappyToyz
+              </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
                 <Nav.Link href="#">Filter</Nav.Link>
-                <Nav.Link href="#">Conversations</Nav.Link>
+                <Nav.Link href="#">
+                  <Link className="router-link" to="/conversations">
+                    Conversations
+                  </Link>
+                </Nav.Link>
                 <Nav.Link>
-                  <Link to="/saved-toys">Saved Toys</Link>
+                  <Link className="router-link" to="/saved-toys">
+                    Saved Toys
+                  </Link>
                 </Nav.Link>
 
                 <Nav.Link href="#savedToys">{user.name}</Nav.Link>
@@ -100,10 +118,17 @@ function App() {
               userMatch={userMatch}
               addToSavedToys={addToSavedToys}
               getSavedToys={getSavedToys}
+              addToConversations={addToConversations}
             />
           </Route>
           <Route exact path="/saved-toys">
             <SavedToys savedToys={savedToys} getToy={getToy}></SavedToys>
+          </Route>
+          <Route exact path="/conversations">
+            <Conversations
+              conversations={conversations}
+              getUser={getUser}
+            ></Conversations>
           </Route>
         </Switch>
       </BrowserRouter>

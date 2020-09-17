@@ -5,11 +5,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import { ProtectedRoute } from "../protectedRoute";
 import { Main } from "../components/main";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { SavedToys } from "../components/savedToys";
-import "../css/homePage.css";
 const toys = require("../toys/toys.js");
 const users = require("../users/users.jsx");
 
@@ -93,15 +91,6 @@ export const HomePage = (props) => {
           getSavedToys={getSavedToys}
         ></SavedToys>
       </Route>
-
-      {/*<ProtectedRoute
-        exact
-        path="/app/a"
-        setAuth={props.setAuth}
-        auth={props.auth}
-        user={props.user}
-      component={Main}
-      />*/}
     </div>
   );
 };

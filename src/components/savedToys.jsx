@@ -2,16 +2,20 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
 export const SavedToys = (props) => {
-  console.log("Saved Toys");
-  console.log(props.savedToys);
-  console.log(props.getSavedToys());
   var savedToys = [...props.savedToys];
 
   return (
-    <ListGroup variant="flush">
-      {savedToys.map((toy) => (
-        <ListGroup.Item>{toy}</ListGroup.Item>
-      ))}
-    </ListGroup>
+    <div className="container m-3">
+      <div className="row">
+        <div className="col-8">
+          <ListGroup>
+            {savedToys.map((toyId) => {
+              const toy = props.getToy(toyId);
+              return <ListGroup.Item>{toy.name}</ListGroup.Item>;
+            })}
+          </ListGroup>
+        </div>
+      </div>
+    </div>
   );
 };

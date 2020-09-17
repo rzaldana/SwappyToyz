@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-import { HomePage } from "./views/homePage";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { Main } from "./components/main";
 import Navbar from "react-bootstrap/Navbar";
@@ -32,6 +31,10 @@ function App() {
 
   const getSavedToys = () => {
     return savedToys;
+  };
+
+  const getToy = (id) => {
+    return toys[id];
   };
 
   const getNextToy = (id) => {
@@ -100,10 +103,7 @@ function App() {
             />
           </Route>
           <Route exact path="/saved-toys">
-            <SavedToys
-              savedToys={savedToys}
-              getSavedToys={getSavedToys}
-            ></SavedToys>
+            <SavedToys savedToys={savedToys} getToy={getToy}></SavedToys>
           </Route>
         </Switch>
       </BrowserRouter>

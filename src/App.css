@@ -40,3 +40,7 @@
 html {
   overflow-y: scroll;
 }
+
+.color-nav {
+  background-color: #6e7fff !important;
+}

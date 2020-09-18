@@ -14,6 +14,8 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
+import ReactImageAppear from "react-image-appear";
+
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => {
@@ -140,6 +142,7 @@ export const Main = (props) => {
                   onLoad={() => setToyPicLoaded(true)}
                   className="content"
                   style={{ opacity: toyPicLoaded ? "1" : "0" }}
+                  key={currentToy.image}
                 />
               </div>
               <Card.Body>
@@ -241,44 +244,53 @@ export const Main = (props) => {
               );
             })}
             <hr />
-            <div className="container">
-              <div className="row">
-                <div className="col-sm-8 text-sm-left mt-3">
-                  <p className="mb-0">Uploaded by</p>
-                  <h5>{props.getUserName(currentToy.ownerId)}</h5>
-                </div>
-                <div className="col-sm-4 p-0">
-                  <div
-                    style={{
-                      opacity: ownerPicLoaded ? "0" : "1",
-                      position: "relative",
-                    }}
-                  >
-                    <Spinner
-                      animation="border"
-                      role="status"
-                      style={{ position: "absolute" }}
-                    >
-                      <span className="sr-only">Loading...</span>
-                    </Spinner>
-                  </div>
-                  <div className="owner-pic">
-                    <img
-                      src={props.getUserPic(currentToy.ownerId)}
-                      className="content-owner-pic"
-                      onLoad={() => setOwnerPicLoaded(true)}
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-12 text-left">
-                  <p>{currentToy.description}</p>
-                </div>
 
-                <div className="col-sm-12 text-left">
-                  <h6>Looking For:</h6>
-                  {props.getUserWishList(currentToy.ownerId).map((wish) => (
-                    <p key={wish}>{wish}</p>
-                  ))}
+            <div
+              style={{
+                opacity: ownerPicLoaded ? "0" : "1",
+                position: "relative",
+              }}
+            >
+              <Spinner
+                animation="border"
+                role="status"
+                style={{ position: "absolute" }}
+              >
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </div>
+            <div
+              style={{
+                opacity: ownerPicLoaded ? "1" : "0",
+                position: "relative",
+              }}
+            >
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-8 text-sm-left mt-3">
+                    <p className="mb-0">Uploaded by</p>
+                    <h5>{props.getUserName(currentToy.ownerId)}</h5>
+                  </div>
+                  <div className="col-sm-4 p-0">
+                    <div className="owner-pic">
+                      <img
+                        src={props.getUserPic(currentToy.ownerId)}
+                        className="content-owner-pic"
+                        onLoad={() => setOwnerPicLoaded(true)}
+                        key={props.getUserPic(currentToy.ownerId)}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-sm-12 text-left">
+                    <p>{currentToy.description}</p>
+                  </div>
+
+                  <div className="col-sm-12 text-left">
+                    <h6>Looking For:</h6>
+                    {props.getUserWishList(currentToy.ownerId).map((wish) => (
+                      <p key={wish}>{wish}</p>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

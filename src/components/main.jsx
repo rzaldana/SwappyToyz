@@ -15,6 +15,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 import ReactImageAppear from "react-image-appear";
+import { noAuto } from "@fortawesome/fontawesome-svg-core";
 
 function importAll(r) {
   let images = {};
@@ -31,6 +32,7 @@ var banner = ""; //<h1 className="banner">Hiya</h1>;
 var bannerUserId;
 var bannerUserName = "";
 var bannerUserPic = "";
+var alertToyName = "";
 
 var bannerToyPic = "";
 export const Main = (props) => {
@@ -43,6 +45,12 @@ export const Main = (props) => {
   };
 
   const [showAlert, setShowAlert] = useState(false);
+
+  const onShowAlert = () => {
+    window.setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
+  };
 
   const [ownerPicLoaded, setOwnerPicLoaded] = useState(true);
   const [toyPicLoaded, setToyPicLoaded] = useState(false);
@@ -73,6 +81,25 @@ export const Main = (props) => {
 
   return (
     <React.Fragment>
+      <div
+        className="container"
+        style={{
+          position: "fixed",
+          top: "10px",
+          maxWidth: "100%",
+          marginRight: "auto",
+        }}
+      >
+        <div className="row">
+          <div className="col-3"></div>
+          <div className="col-6 align-self-end">
+            <Alert show={showAlert} style={{ right: "auto" }} variant="success">
+              <p>Added "{alertToyName}" to saved toys</p>
+            </Alert>
+          </div>
+        </div>
+      </div>
+
       <div className="container-fluid w-100" style={{ marginTop: "2em" }}>
         {banner}
         <div className="row w-100">
@@ -177,11 +204,9 @@ export const Main = (props) => {
                         <Button
                           onClick={() => {
                             setShowAlert(true);
-                            console.log(currentToy.id);
-
+                            alertToyName = currentToy.name;
+                            onShowAlert();
                             props.addToSavedToys(currentToy.id);
-                            console.log("current state: ");
-                            console.log(props.getSavedToys());
                             props.getNextToy(props.user.id);
                           }}
                           variant="light"

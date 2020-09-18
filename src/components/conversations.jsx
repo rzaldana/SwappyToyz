@@ -1,6 +1,7 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../css/conversations.css";
+import ReactImageAppear from "react-image-appear";
 
 export const Conversations = (props) => {
   var conversations = [...props.conversations];
@@ -19,12 +20,13 @@ export const Conversations = (props) => {
                     <div className="row align-items-center">
                       <div className="col-3 p-0">
                         <div className="container">
-                          <div className="row">
-                            <div className="col-12">
+                          <div className="row align-items-center justify-content-center">
+                            <div className="col-12 ">
                               <div className="owner-pic-conv">
-                                <img
+                                <ReactImageAppear
                                   src={user.picture}
                                   className="content-owner-pic-conv"
+                                  placeholderClass="content-owner-pic-conv"
                                 />
                               </div>
                             </div>

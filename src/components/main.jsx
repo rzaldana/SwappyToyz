@@ -94,7 +94,7 @@ export const Main = (props) => {
           <div className="col-3"></div>
           <div className="col-6 align-self-end">
             <Alert show={showAlert} style={{ right: "auto" }} variant="success">
-              <p>Added "{alertToyName}" to saved toys</p>
+              <p>"{alertToyName}" was added to saved toys</p>
             </Alert>
           </div>
         </div>
@@ -146,7 +146,7 @@ export const Main = (props) => {
             </div>
           </div>
           <div className="col-sm-7">
-            <Card>
+            <Card className="shadow">
               <div className="toy-img-container">
                 <div
                   style={{
@@ -259,7 +259,7 @@ export const Main = (props) => {
               </Card.Body>
             </Card>
           </div>
-          <div className="col-sm-3">
+          <div className="col-sm-3 mt-5">
             <h5>{currentToy.name}</h5>
             {currentToy.tags.map((tag) => {
               return (

@@ -90,10 +90,11 @@
 
 .toy-img-container {
   position: relative;
-  width: 60%;
+  width: 90%;
   height: 50vh;
   text-align: left;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  margin-top: 2em;
   margin-left: auto;
   margin-right: auto;
 }
@@ -104,4 +105,8 @@
   height: 100%;
   border-radius: 0.5em;
   object-fit: cover;
+}
+
+.shadow {
+  box-shadow: rgba(2, 12, 27, 0.7) 0px 10px 30px -15px !important;
 }

@@ -21,10 +21,10 @@ export const Conversations = (props) => {
                         <div className="container">
                           <div className="row">
                             <div className="col-12">
-                              <div className="owner-pic">
+                              <div className="owner-pic-conv">
                                 <img
                                   src={user.picture}
-                                  className="content-owner-pic"
+                                  className="content-owner-pic-conv"
                                 />
                               </div>
                             </div>

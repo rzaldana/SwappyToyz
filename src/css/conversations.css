@@ -1,4 +1,4 @@
-.owner-pic {
+.owner-pic-conv {
   position: relative;
   width: 100%;
   text-align: left;
@@ -7,13 +7,13 @@
   margin-right: auto;
 }
 
-.owner-pic:after {
+.owner-pic-conv:after {
   content: "";
   display: block;
   padding-bottom: 100%;
 }
 
-.content-owner-pic {
+.content-owner-pic-conv {
   position: absolute;
   width: 100%;
   height: 100%;

@@ -44,7 +44,7 @@ export const Main = (props) => {
 
   const [showAlert, setShowAlert] = useState(false);
 
-  const [ownerPicLoaded, setOwnerPicLoaded] = useState(false);
+  const [ownerPicLoaded, setOwnerPicLoaded] = useState(true);
   const [toyPicLoaded, setToyPicLoaded] = useState(false);
   const [allPicsLoaded, setAllPicsLoaded] = useState(false);
 
@@ -120,7 +120,7 @@ export const Main = (props) => {
           </div>
           <div className="col-sm-7">
             <Card>
-              <div className="img-container-card">
+              <div className="toy-img-container">
                 <div
                   style={{
                     opacity: toyPicLoaded ? "0" : "1",
@@ -137,13 +137,13 @@ export const Main = (props) => {
                     <span className="sr-only">Loading...</span>
                   </Spinner>
                 </div>
-                <img
+
+                <ReactImageAppear
                   src={currentToy.image}
-                  onLoad={() => setToyPicLoaded(true)}
-                  className="content"
-                  style={{ opacity: toyPicLoaded ? "1" : "0" }}
+                  className="toy-img"
                   key={currentToy.image}
                 />
+                <img />
               </div>
               <Card.Body>
                 <div className="container-fluid">
@@ -272,12 +272,13 @@ export const Main = (props) => {
                     <h5>{props.getUserName(currentToy.ownerId)}</h5>
                   </div>
                   <div className="col-sm-4 p-0">
-                    <div className="owner-pic">
-                      <img
+                    <div className="owner-pic-side">
+                      <ReactImageAppear
                         src={props.getUserPic(currentToy.ownerId)}
-                        className="content-owner-pic"
+                        className="content-owner-pic-side"
                         onLoad={() => setOwnerPicLoaded(true)}
                         key={props.getUserPic(currentToy.ownerId)}
+                        placeholderClass="content-owner-pic-side"
                       />
                     </div>
                   </div>

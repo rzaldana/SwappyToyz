@@ -6,17 +6,15 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { SavedToys } from "./components/savedToys";
 import { Conversations } from "./components/conversations.jsx";
+import { Profile } from "./components/profile.jsx";
+import ReactImageAppear from "react-image-appear";
 
 const toys = require("./toys/toys.js");
 const users = require("./users/users.jsx");
 
 function App() {
   const [auth, setAuth] = useState(true);
-  const [user, setUser] = useState({
-    id: 123,
-    name: "Jane Doe",
-    photo: "../img/jane-doe.png",
-  });
+  const [user, setUser] = useState(5);
 
   // definitions from Homepage
 
@@ -69,6 +67,24 @@ function App() {
     return users[id];
   };
 
+  const getUserToys = (id) => {
+    console.log("Entering getUserToys");
+    console.log("toys =");
+    console.log(toys);
+    let userToys = [];
+
+    console.log("user id:");
+    console.log(id);
+
+    toys.forEach((toy) => {
+      if (id == toy.ownerId) {
+        userToys.push(toy.id);
+      }
+    });
+
+    return userToys;
+  };
+
   // end of defintions from HomePage
 
   return (
@@ -98,7 +114,15 @@ function App() {
                   </Link>
                 </Nav.Link>
 
-                <Nav.Link href="#savedToys">{user.name}</Nav.Link>
+                <Nav.Link href="#savedToys">
+                  <Link className="router-link" to={`/profile/${user}`}>
+                    {getUserName(user)}
+                    {/* 
+                    <div>
+                      <ReactImageAppear src={getUserPic(user)} />
+                    </div>*/}
+                  </Link>
+                </Nav.Link>
 
                 <Nav.Link>Log Out</Nav.Link>
               </Nav>
@@ -129,6 +153,14 @@ function App() {
               conversations={conversations}
               getUser={getUser}
             ></Conversations>
+          </Route>
+          <Route path="/profile/:id">
+            <Profile
+              getUser={getUser}
+              getUserToys={getUserToys}
+              getUserPic={getUserPic}
+              getUserName={getUserName}
+            ></Profile>
           </Route>
         </Switch>
       </BrowserRouter>

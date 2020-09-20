@@ -10,6 +10,14 @@ const users = [
     wishList: ["Toys for 11-13 year old boy"],
     picture: imageUrl + "0.jpg",
     match: false,
+    points: 40,
+    interactions: 20,
+    location: 23400,
+    city: "Toronto",
+    country: "Canada",
+    friends: [1, 2, 3],
+    info:
+      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
   },
   {
     id: 2,
@@ -17,6 +25,14 @@ const users = [
     wishList: ["Barbie Dolls"],
     picture: imageUrl + "1.jpg",
     match: true,
+    points: 40,
+    interactions: 20,
+    location: 23400,
+    city: "Toronto",
+    country: "Canada",
+    friends: [1, 2, 3],
+    info:
+      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
   },
 
   {
@@ -25,6 +41,14 @@ const users = [
     wishList: ["Barbie Dolls"],
     picture: imageUrl + "2.jpg",
     match: false,
+    points: 40,
+    interactions: 20,
+    location: 23400,
+    city: "Toronto",
+    country: "Canada",
+    friends: [1, 2, 3],
+    info:
+      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
   },
 
   {
@@ -33,14 +57,45 @@ const users = [
     wishList: ["Barbie Dolls"],
     picture: imageUrl + "3.jpg",
     match: false,
+    points: 40,
+    interactions: 20,
+    location: 23400,
+    city: "Toronto",
+    country: "Canada",
+    friends: [1, 2, 3],
+    info:
+      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
   },
 
   {
-    id: 4,
+    id: 5,
     name: "John Appleseed",
     wishList: ["Barbie Dolls"],
     picture: imageUrl + "4.jpg",
     match: true,
+    points: 40,
+    interactions: 20,
+    location: 23400,
+    city: "Toronto",
+    country: "Canada",
+    friends: [1, 2, 3],
+    info:
+      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
+  },
+  {
+    id: 6,
+    name: "Jane Doe",
+    wishList: ["Barbie Dolls"],
+    picture: imageUrl + "5.png",
+    match: false,
+    points: 40,
+    interactions: 20,
+    location: 23400,
+    city: "Toronto",
+    country: "Canada",
+    friends: [1, 2, 3],
+    info:
+      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
   },
 ];
 

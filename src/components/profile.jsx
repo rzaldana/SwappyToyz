@@ -6,6 +6,7 @@ import "../css/main.css";
 import { useParams } from "react-router-dom";
 import ReactImageAppear from "react-image-appear";
 import "../css/profile.css";
+import { Link } from "react-router-dom";
 
 function importAll(r) {
   let images = {};
@@ -86,25 +87,38 @@ export const Profile = (props) => {
             </div>
           </div>
           {/* Profile pic and toys */}
-          <div className="col-sm-4">
+          <div className="col-sm-4 mt-5 text-left">
             <div className="container">
               <div className="row">
                 <div className="col-12">
                   <div className="profile-pic">
-                    <ReactImageAppear
-                      src={user.picture}
-                      className="content-profile-pic"
-                    ></ReactImageAppear>
+                    <img src={user.picture} className="content-profile-pic" />
                   </div>
                 </div>
                 <div className="col-12">
                   <h5>Toys ({noOfToys})</h5>{" "}
-                </div>{" "}
+                </div>
+                <div className="col-12">
+                  <div className="container m-0 p-0">
+                    <div className="row m-0 p-0">
+                      {userToys.map((toyId) => {
+                        return (
+                          <div className="col-4 s-toy-img-container">
+                            <img
+                              className="s-toy-img"
+                              src={props.getToyPic(toyId)}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           {/* name, info, and friends */}
-          <div className="col-sm-4 mt-5">
+          <div className="col-sm-4 mt-5 text-left">
             <div className="containter">
               <div className="row">
                 <div className="col-12">
@@ -122,50 +136,58 @@ export const Profile = (props) => {
                 </div>
 
                 <div className="col-12">
-                  <p>Looking for:</p>
+                  <p className="mb-0">Looking for:</p>
                   {user.wishList.map((wish) => (
                     <h5>{wish}</h5>
                   ))}
                 </div>
                 <div className="col-4">
-                  <p>Points</p>
+                  <p className="mb-0 mt-2">Points</p>
                   <h5>{user.points}</h5>
                 </div>
 
                 <div className="col-4">
-                  <p>Interactions</p>
+                  <p className="mb-0 mt-2">Interactions</p>
                   <h5>{user.interactions}</h5>
                 </div>
 
                 <div className="col-4">
-                  <p>Location</p>
+                  <p className="mb-0 mt-2">Location</p>
                   <h5>{user.interactions}</h5>
                 </div>
 
                 <div className="col-4">
-                  <p>Friends</p>
+                  <p className="mb-0 mt-2">Friends</p>
                   <h5>{noOfFriends}</h5>
                 </div>
                 <div className="col-8"></div>
 
                 {user.friends.map((friend) => {
                   return (
-                    <div className="col-3">
-                      <div className="container">
-                        <div className="row">
-                          <div className="col-12 friend-col">
-                            <div className="friend-profile-pic">
-                              <ReactImageAppear
-                                src={props.getUserPic(friend)}
-                                className="content-friend-profile-pic"
-                              ></ReactImageAppear>
+                    <div className="col-3 mt-2 p-0">
+                      <Link to={`/profile/${friend}`}>
+                        <div className="container">
+                          <div className="row">
+                            <div className="col-12 m-0 p-0 friend-col">
+                              <div className="friend-profile-pic">
+                                <img
+                                  src={props.getUserPic(friend)}
+                                  className="content-friend-profile-pic"
+                                  placeholderClass="content-friend-profile-pic"
+                                ></img>
+                              </div>
+                            </div>
+                            <div className="col-12">
+                              <p
+                                style={{ fontSize: "0.8rem" }}
+                                className="text-center"
+                              >
+                                {props.getUserName(friend).split(" ")[0]}
+                              </p>
                             </div>
                           </div>
-                          <div className="col-12">
-                            <p>{props.getUserName(friend).split(" ")[0]}</p>
-                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                   );
                 })}

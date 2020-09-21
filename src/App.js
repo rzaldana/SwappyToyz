@@ -41,6 +41,10 @@ function App() {
     return toys[id];
   };
 
+  const getToyPic = (toyId) => {
+    return toys[toyId].image;
+  };
+
   const getNextToy = (id) => {
     const randNum = Math.floor(Math.random() * 10);
     const toy = toys[randNum];
@@ -68,13 +72,7 @@ function App() {
   };
 
   const getUserToys = (id) => {
-    console.log("Entering getUserToys");
-    console.log("toys =");
-    console.log(toys);
     let userToys = [];
-
-    console.log("user id:");
-    console.log(id);
 
     toys.forEach((toy) => {
       if (id == toy.ownerId) {
@@ -160,6 +158,7 @@ function App() {
               getUserToys={getUserToys}
               getUserPic={getUserPic}
               getUserName={getUserName}
+              getToyPic={getToyPic}
             ></Profile>
           </Route>
         </Switch>

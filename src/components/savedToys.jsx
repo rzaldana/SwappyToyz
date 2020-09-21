@@ -8,6 +8,7 @@ export const SavedToys = (props) => {
     <div className="container m-3">
       <div className="row">
         <div className="col-8">
+          {savedToys.length == 0 ? "You haven't saved any toys yet!" : ""}
           <ListGroup>
             {savedToys.map((toyId) => {
               const toy = props.getToy(toyId);

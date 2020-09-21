@@ -322,17 +322,22 @@ export const Main = (props) => {
                 <div className="row">
                   <div className="col-sm-8 text-sm-left mt-3">
                     <p className="mb-0">Uploaded by</p>
-                    <h5>{props.getUserName(currentToy.ownerId)}</h5>
+
+                    <Link to={`/profile/${currentToy.ownerId}`}>
+                      <h5>{props.getUserName(currentToy.ownerId)}</h5>
+                    </Link>
                   </div>
                   <div className="col-sm-4 p-0">
                     <div className="owner-pic-side">
-                      <ReactImageAppear
-                        src={props.getUserPic(currentToy.ownerId)}
-                        className="content-owner-pic-side"
-                        onLoad={() => setOwnerPicLoaded(true)}
-                        key={props.getUserPic(currentToy.ownerId)}
-                        placeholderClass="content-owner-pic-side"
-                      />
+                      <Link to={`/profile/${currentToy.ownerId}`}>
+                        <ReactImageAppear
+                          src={props.getUserPic(currentToy.ownerId)}
+                          className="content-owner-pic-side"
+                          onLoad={() => setOwnerPicLoaded(true)}
+                          key={props.getUserPic(currentToy.ownerId)}
+                          placeholderClass="content-owner-pic-side"
+                        />
+                      </Link>
                     </div>
                   </div>
                   <div className="col-sm-12 text-left">

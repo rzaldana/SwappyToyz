@@ -59,9 +59,8 @@ const users = [
     location: 23400,
     city: "Toronto",
     country: "Canada",
-    friends: [1, 2, 3],
-    info:
-      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
+    friends: [1, 2, 5],
+    info: "I'm the father of two hyper-active twins",
   },
 
   {
@@ -77,7 +76,7 @@ const users = [
     country: "Canada",
     friends: [1, 2, 3],
     info:
-      "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
+      "Looking for toys for my daughter and to meet other parents in the area",
   },
   {
     id: 5,

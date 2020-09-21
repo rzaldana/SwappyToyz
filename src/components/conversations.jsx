@@ -11,6 +11,7 @@ export const Conversations = (props) => {
     <div className="container m-3">
       <div className="row">
         <div className="col-8">
+          {conversations.length == 0 ? <p>No conversations yet!</p> : ""}
           <ListGroup>
             {conversations.map((convo) => {
               const user = props.getUser(convo);

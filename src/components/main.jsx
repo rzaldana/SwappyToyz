@@ -5,7 +5,12 @@ import toy3 from "../img/toy3.png";
 import "../css/main.css";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faCheck, faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimes,
+  faCheck,
+  faClock,
+  faGift,
+} from "@fortawesome/free-solid-svg-icons";
 import Badge from "react-bootstrap/Badge";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -58,6 +63,9 @@ export const Main = (props) => {
 
   const currentToy = props.toy;
 
+  console.log("GiftStatus: ");
+  console.log(currentToy.gift);
+
   console.log("current saved toys");
   console.log(props.getSavedToys());
 
@@ -76,6 +84,12 @@ export const Main = (props) => {
   const greenTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Yes, Please
+    </Tooltip>
+  );
+
+  const giftTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      This item is available for gifting
     </Tooltip>
   );
 
@@ -148,6 +162,20 @@ export const Main = (props) => {
           <div className="col-sm-7">
             <Card className="shadow">
               <div className="toy-img-container">
+                {
+                  <OverlayTrigger
+                    placement="top"
+                    delay={{ show: 100, hide: 200 }}
+                    overlay={giftTooltip}
+                  >
+                    <div
+                      className="gift-container"
+                      style={{ opacity: currentToy.gift ? 1 : 0 }}
+                    >
+                      <FontAwesomeIcon className="gift-icon" icon={faGift} />
+                    </div>
+                  </OverlayTrigger>
+                }
                 <div
                   style={{
                     opacity: toyPicLoaded ? "0" : "1",

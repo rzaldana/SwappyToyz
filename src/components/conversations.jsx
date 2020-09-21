@@ -2,6 +2,7 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import "../css/conversations.css";
 import ReactImageAppear from "react-image-appear";
+import { Link } from "react-router-dom";
 
 export const Conversations = (props) => {
   var conversations = [...props.conversations];
@@ -11,8 +12,8 @@ export const Conversations = (props) => {
       <div className="row">
         <div className="col-8">
           <ListGroup>
-            {conversations.map((userId) => {
-              const user = props.getUser(userId);
+            {conversations.map((convo) => {
+              const user = props.getUser(convo);
 
               return (
                 <ListGroup.Item>
@@ -40,7 +41,9 @@ export const Conversations = (props) => {
                       </div>
 
                       <div className="col-9">
-                        <h6>Start a chat with {user.name.split(" ")[0]}!</h6>
+                        <Link to={`/conversation/${user.id}`}>
+                          <h6>Start a chat with {user.name.split(" ")[0]}!</h6>
+                        </Link>
                       </div>
                     </div>
                   </div>

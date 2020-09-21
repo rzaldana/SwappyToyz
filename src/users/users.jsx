@@ -1,5 +1,3 @@
-const { faSlidersH } = require("@fortawesome/free-solid-svg-icons");
-
 const imageUrl =
   "https://swappytoyz-assets.s3.ca-central-1.amazonaws.com/user-images/";
 

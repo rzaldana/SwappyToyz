@@ -8,9 +8,11 @@ import { SavedToys } from "./components/savedToys";
 import { Conversations } from "./components/conversations.jsx";
 import { Profile } from "./components/profile.jsx";
 import ReactImageAppear from "react-image-appear";
+import { Conversation } from "./components/conversation.jsx";
 
 const toys = require("./toys/toys.js");
 const users = require("./users/users.jsx");
+const existingConversations = require("./conversations/conversations.jsx");
 
 function App() {
   const [auth, setAuth] = useState(true);
@@ -22,15 +24,17 @@ function App() {
   const [savedToys, setSavedToys] = useState(new Set());
   const [conversations, setConversations] = useState(new Set());
 
+  console.log("conversations: ");
+  console.log(currentToy.picture);
+
   const addToConversations = (userId) => {
     setConversations((convos) => new Set(convos).add(userId));
+    console.log("conversations");
+    console.log(conversations);
   };
 
   const addToSavedToys = (toyId) => {
-    console.log("Adding Toy");
     setSavedToys((toys) => new Set(toys).add(toyId));
-    console.log("State is now: ");
-    console.log(savedToys);
   };
 
   const getSavedToys = () => {
@@ -83,6 +87,15 @@ function App() {
     return userToys;
   };
 
+  //TO-DO: change existingConversations to Conversations
+  const getCounterpart = (id) => {
+    return conversations[id].counterpart;
+  };
+
+  const getMessages = (id) => {
+    return existingConversations[id].messages;
+  };
+
   // end of defintions from HomePage
 
   return (
@@ -116,9 +129,9 @@ function App() {
                   <Link className="router-link" to={`/profile/${user}`}>
                     {getUserName(user)}
                     {/* 
-                    <div>
-                      <ReactImageAppear src={getUserPic(user)} />
-                    </div>*/}
+                  <div>
+                    <ReactImageAppear src={getUserPic(user)} />
+                  </div>*/}
                   </Link>
                 </Nav.Link>
 
@@ -160,6 +173,14 @@ function App() {
               getUserName={getUserName}
               getToyPic={getToyPic}
             ></Profile>
+          </Route>
+          <Route path="/conversation/:id">
+            <Conversation
+              getUserPic={getUserPic}
+              getUserName={getUserName}
+              getCounterpart={getCounterpart}
+              getMessages={getMessages}
+            ></Conversation>
           </Route>
         </Switch>
       </BrowserRouter>

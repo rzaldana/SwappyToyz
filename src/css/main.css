@@ -110,3 +110,18 @@
 .shadow {
   box-shadow: rgba(2, 12, 27, 0.7) 0px 10px 30px -15px !important;
 }
+
+.gift-icon {
+  z-index: 98;
+  color: red;
+  font-size: 2em;
+}
+.gift-container {
+  position: absolute;
+  z-index: 99;
+  top: 5%;
+  right: 5%;
+  background-color: whitesmoke;
+  border-radius: 0.5em;
+  padding: 1%;
+}

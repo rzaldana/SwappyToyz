@@ -37,6 +37,19 @@ const toyDescriptions = [
   "An enormous set of lego bricks that are collecting dust in our home",
 ];
 
+const giftStatus = [
+  true,
+  false,
+  false,
+  true,
+  true,
+  false,
+  false,
+  true,
+  false,
+  false,
+];
+
 const imageUrl =
   "https://swappytoyz-assets.s3.ca-central-1.amazonaws.com/toy-images/";
 
@@ -49,6 +62,7 @@ const toys = [];
     tags: toyTags[i],
     ownerId: i % 5,
     description: toyDescriptions[i],
+    gift: giftStatus[i],
   });
 });
 

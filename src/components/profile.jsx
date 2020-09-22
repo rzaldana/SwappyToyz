@@ -23,7 +23,9 @@ const toyImages = importAll(
 export const Profile = (props) => {
   let { id } = useParams();
 
-  let user = props.getUser(id);
+  props.goToProfile(id);
+
+  let user = props.currentProfile;
 
   let userToys = props.getUserToys(id);
 
@@ -92,7 +94,12 @@ export const Profile = (props) => {
               <div className="row">
                 <div className="col-12">
                   <div className="profile-pic">
-                    <img src={user.picture} className="content-profile-pic" />
+                    <ReactImageAppear
+                      src={user.picture}
+                      className="content-profile-pic"
+                      placeholderClass="content-profile-pic"
+                      key={user.picture}
+                    />
                   </div>
                 </div>
                 <div className="col-12">
@@ -104,9 +111,11 @@ export const Profile = (props) => {
                       {userToys.map((toyId) => {
                         return (
                           <div className="col-4 s-toy-img-container">
-                            <img
+                            <ReactImageAppear
                               className="s-toy-img"
                               src={props.getToyPic(toyId)}
+                              placeholderClass="s-toy-img"
+                              key={toyId}
                             />
                           </div>
                         );
@@ -170,11 +179,12 @@ export const Profile = (props) => {
                           <div className="row">
                             <div className="col-12 m-0 p-0 friend-col">
                               <div className="friend-profile-pic">
-                                <img
+                                <ReactImageAppear
                                   src={props.getUserPic(friend)}
                                   className="content-friend-profile-pic"
                                   placeholderClass="content-friend-profile-pic"
-                                ></img>
+                                  key={friend}
+                                />
                               </div>
                             </div>
                             <div className="col-12">

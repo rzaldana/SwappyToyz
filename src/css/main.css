@@ -1,5 +1,6 @@
 .img-container {
   position: relative;
+  height: fit-content;
   width: 100%;
   text-align: left;
   margin-bottom: 2em;
@@ -124,4 +125,8 @@
   background-color: whitesmoke;
   border-radius: 0.5em;
   padding: 1%;
+}
+
+.recommended-img {
+  object-fit: cover;
 }

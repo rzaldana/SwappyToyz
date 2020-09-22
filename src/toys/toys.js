@@ -9,6 +9,9 @@ const toyNames = [
   "Toy Beetle",
   "Piggies",
   "Lego set",
+  "Red Plane",
+  "Stuffed Lamb",
+  "Set of trucks",
 ];
 
 const toyTags = [
@@ -22,6 +25,9 @@ const toyTags = [
   ["Car"],
   ["cute", "0-3 years old"],
   ["Lego"],
+  ["plane", "red"],
+  ["lamb", "stuffed animal"],
+  ["trucks"],
 ];
 
 const toyDescriptions = [
@@ -35,6 +41,9 @@ const toyDescriptions = [
   "A toy beetle car",
   "A set of piggies for a baby",
   "An enormous set of lego bricks that are collecting dust in our home",
+  "A red plane for toddlers",
+  "An adorable stuffed lamb",
+  "A set of trucks",
 ];
 
 const giftStatus = [
@@ -48,13 +57,16 @@ const giftStatus = [
   true,
   false,
   false,
+  true,
+  false,
+  false,
 ];
 
 const imageUrl =
   "https://swappytoyz-assets.s3.ca-central-1.amazonaws.com/toy-images/";
 
 const toys = [];
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => {
   toys.push({
     id: i,
     image: imageUrl + (i + 1).toString() + ".jpg",

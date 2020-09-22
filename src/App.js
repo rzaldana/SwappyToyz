@@ -21,8 +21,9 @@ function App() {
   // definitions from Homepage
 
   const [currentToy, setCurrentToy] = useState(toys[1]);
-  const [savedToys, setSavedToys] = useState(new Set());
+  const [savedToys, setSavedToys] = useState(new Set([1]));
   const [conversations, setConversations] = useState(new Set());
+  const [currentProfile, setCurrentProfile] = useState(users[5]);
 
   console.log("conversations: ");
   console.log(currentToy.picture);
@@ -53,6 +54,16 @@ function App() {
     const randNum = Math.floor(Math.random() * 10);
     const toy = toys[randNum];
     setCurrentToy(toy);
+  };
+
+  const goToToy = (id) => {
+    const toy = toys[id];
+    setCurrentToy(toy);
+  };
+
+  const goToProfile = (id) => {
+    const profile = users[id];
+    setCurrentProfile(profile);
   };
 
   const getUserPic = (id) => {
@@ -153,6 +164,10 @@ function App() {
               addToSavedToys={addToSavedToys}
               getSavedToys={getSavedToys}
               addToConversations={addToConversations}
+              getToy={getToy}
+              recommended={[10, 11, 12]}
+              getToyPic={getToyPic}
+              goToToy={goToToy}
             />
           </Route>
           <Route exact path="/saved-toys">
@@ -171,6 +186,8 @@ function App() {
               getUserPic={getUserPic}
               getUserName={getUserName}
               getToyPic={getToyPic}
+              currentProfile={currentProfile}
+              goToProfile={goToProfile}
             ></Profile>
           </Route>
           <Route path="/conversation/:id">

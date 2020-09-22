@@ -119,43 +119,23 @@ export const Main = (props) => {
         <div className="row w-100">
           <div className="col-sm-2">
             <h5>Recommended</h5>
+            {/*TODO: FIX RECOMMENDED IMAGES SPACING ISSUES */}
             <div className="container-fluid">
               <div className="row">
-                <div className="col-12">
-                  <div className="img-container">
-                    <img
-                      src={toy1}
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      className="content"
-                    />
-                  </div>
-                </div>
-
-                <div className="col-12">
-                  <div className="img-container">
-                    <img
-                      src={toy2}
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      className="content"
-                    />
-                  </div>
-                </div>
-
-                <div className="col-12">
-                  <div className="img-container">
-                    <img
-                      src={toy3}
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      className="content"
-                    />
-                  </div>
-                </div>
+                {props.recommended.map((toyId) => {
+                  return (
+                    <div className="col-12">
+                      <div className="img-container">
+                        <ReactImageAppear
+                          src={props.getToyPic(toyId)}
+                          className="content recommended"
+                          placeholderClass="content recommended"
+                          onClick={() => props.goToToy(toyId)}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

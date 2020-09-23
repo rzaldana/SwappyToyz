@@ -88,7 +88,7 @@ export const Profile = (props) => {
                     <div className="row m-0 p-0">
                       {userToys.map((toyId) => {
                         return (
-                          <div className="col-4 s-toy-img-container">
+                          <div className="col-4 s-toy-img-container mt-2">
                             <ReactImageAppear
                               className="s-toy-img"
                               src={props.getToyPic(toyId)}
@@ -125,7 +125,7 @@ export const Profile = (props) => {
                 <div className="col-12">
                   <p className="mb-0">Looking for:</p>
                   {user.wishList.map((wish) => (
-                    <p>{wish}</p>
+                    <p className="font-weight-bold">{wish}</p>
                   ))}
                 </div>
 

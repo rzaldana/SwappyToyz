@@ -94,7 +94,7 @@ const users = [
     location: 23400,
     city: "Toronto",
     country: "Canada",
-    friends: [1, 2, 3],
+    friends: [1, 2, 3, 4],
     info:
       "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
     rating: 5,

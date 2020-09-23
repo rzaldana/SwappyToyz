@@ -7,6 +7,9 @@ import { useParams } from "react-router-dom";
 import ReactImageAppear from "react-image-appear";
 import "../css/profile.css";
 import { Link } from "react-router-dom";
+import { Recommended } from "./recommended";
+import { Button } from "react-bootstrap";
+import Rating from "@material-ui/lab/Rating";
 
 function importAll(r) {
   let images = {};
@@ -24,6 +27,8 @@ export const Profile = (props) => {
   let { id } = useParams();
 
   props.goToProfile(id);
+
+  let isCurrentUser = props.isCurrentUser(id);
 
   let user = props.currentProfile;
 
@@ -46,51 +51,15 @@ export const Profile = (props) => {
     <React.Fragment>
       <div className="container-fluid w-100" style={{ marginTop: "2em" }}>
         <div className="row w-100">
-          <div className="col-sm-2">
-            <h5>Recommended</h5>
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-12">
-                  <div className="img-container">
-                    <img
-                      src={toy1}
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      className="content"
-                    />
-                  </div>
-                </div>
+          <Recommended
+            recommended={props.recommended}
+            getToyPic={props.getToyPic}
+            goToToy={props.goToToy}
+          ></Recommended>
 
-                <div className="col-12">
-                  <div className="img-container">
-                    <img
-                      src={toy2}
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      className="content"
-                    />
-                  </div>
-                </div>
-
-                <div className="col-12">
-                  <div className="img-container">
-                    <img
-                      src={toy3}
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      className="content"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           {/* Profile pic and toys */}
           <div className="col-sm-4 mt-5 text-left">
-            <div className="container">
+            <div className="f-container">
               <div className="row">
                 <div className="col-12">
                   <div className="profile-pic">
@@ -102,8 +71,17 @@ export const Profile = (props) => {
                     />
                   </div>
                 </div>
-                <div className="col-12">
-                  <h5>Toys ({noOfToys})</h5>{" "}
+                <div className="col-8 align-self-center">
+                  <h5>Toys ({noOfToys})</h5>
+                </div>
+                <div className="col-4 align-self-center">
+                  {isCurrentUser ? (
+                    <Link to="/newtoy">
+                      <Button className="btn-sm">Add Toy</Button>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="col-12">
                   <div className="container m-0 p-0">
@@ -147,8 +125,14 @@ export const Profile = (props) => {
                 <div className="col-12">
                   <p className="mb-0">Looking for:</p>
                   {user.wishList.map((wish) => (
-                    <h5>{wish}</h5>
+                    <p>{wish}</p>
                   ))}
+                </div>
+
+                <div className="col-12">
+                  <p className="mb-0">User Rating</p>
+
+                  <Rating name="read-only" value={user.rating} readOnly />
                 </div>
                 <div className="col-4">
                   <p className="mb-0 mt-2">Points</p>
@@ -161,15 +145,9 @@ export const Profile = (props) => {
                 </div>
 
                 <div className="col-4">
-                  <p className="mb-0 mt-2">Location</p>
-                  <h5>{user.interactions}</h5>
-                </div>
-
-                <div className="col-4">
                   <p className="mb-0 mt-2">Friends</p>
                   <h5>{noOfFriends}</h5>
                 </div>
-                <div className="col-8"></div>
 
                 {user.friends.map((friend) => {
                   return (

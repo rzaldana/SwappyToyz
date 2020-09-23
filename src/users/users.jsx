@@ -16,6 +16,7 @@ const users = [
     friends: [1, 2, 3],
     info:
       "We just moved to Toronto and my kids had to leave a lot of their toys back in Winnipeg so we're looking for some new stuff. ",
+    rating: 5,
   },
   {
     id: 1,
@@ -31,6 +32,7 @@ const users = [
     friends: [0, 2, 3],
     info:
       "Hi, I'm Nora. I have a 3-year old boy and a 5-year old girl with lots of toys",
+    rating: 5,
   },
 
   {
@@ -46,6 +48,7 @@ const users = [
     country: "Canada",
     friends: [1, 3, 4],
     info: "I'm looking to give away a lot of toys my baby girl outgrew already",
+    rating: 4,
   },
 
   {
@@ -61,6 +64,7 @@ const users = [
     country: "Canada",
     friends: [1, 2, 5],
     info: "I'm the father of two hyper-active twins",
+    rating: 3,
   },
 
   {
@@ -77,6 +81,7 @@ const users = [
     friends: [1, 2, 3],
     info:
       "Looking for toys for my daughter and to meet other parents in the area",
+    rating: 4,
   },
   {
     id: 5,
@@ -92,6 +97,7 @@ const users = [
     friends: [1, 2, 3],
     info:
       "Hi, I'm Jane. I have a little child who has a lot of toys to get rid of",
+    rating: 5,
   },
 ];
 

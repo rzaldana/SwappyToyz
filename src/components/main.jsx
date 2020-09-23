@@ -21,6 +21,9 @@ import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 import ReactImageAppear from "react-image-appear";
 import { noAuto } from "@fortawesome/fontawesome-svg-core";
+import { Recommended } from "./recommended.jsx";
+
+import Rating from "@material-ui/lab/Rating";
 
 function importAll(r) {
   let images = {};
@@ -117,28 +120,11 @@ export const Main = (props) => {
       <div className="container-fluid w-100" style={{ marginTop: "2em" }}>
         {banner}
         <div className="row w-100">
-          <div className="col-sm-2">
-            <h5>Recommended</h5>
-            {/*TODO: FIX RECOMMENDED IMAGES SPACING ISSUES */}
-            <div className="container-fluid">
-              <div className="row">
-                {props.recommended.map((toyId) => {
-                  return (
-                    <div className="col-12">
-                      <div className="img-container">
-                        <ReactImageAppear
-                          src={props.getToyPic(toyId)}
-                          className="content recommended"
-                          placeholderClass="content recommended"
-                          onClick={() => props.goToToy(toyId)}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          <Recommended
+            recommended={props.recommended}
+            getToyPic={props.getToyPic}
+            goToToy={props.goToToy}
+          ></Recommended>
           <div className="col-sm-7">
             <Card className="shadow">
               <div className="toy-img-container">
@@ -306,6 +292,12 @@ export const Main = (props) => {
                     <Link to={`/profile/${currentToy.ownerId}`}>
                       <h5>{props.getUserName(currentToy.ownerId)}</h5>
                     </Link>
+
+                    <Rating
+                      name="read-only"
+                      value={props.getUserRating(currentToy.ownerId)}
+                      readOnly
+                    />
                   </div>
                   <div className="col-sm-4 p-0">
                     <div className="owner-pic-side">

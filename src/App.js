@@ -9,10 +9,12 @@ import { Conversations } from "./components/conversations.jsx";
 import { Profile } from "./components/profile.jsx";
 import ReactImageAppear from "react-image-appear";
 import { Conversation } from "./components/conversation.jsx";
+import { NewToy } from "./components/newToy.jsx";
 
 const toys = require("./toys/toys.js");
 const users = require("./users/users.jsx");
 const existingConversations = require("./conversations/conversations.jsx");
+const recommended = [10, 11, 12];
 
 function App() {
   const [auth, setAuth] = useState(true);
@@ -107,6 +109,14 @@ function App() {
     return existingConversations[id].messages;
   };
 
+  const isCurrentUser = (id) => {
+    return id == user;
+  };
+
+  const getUserRating = (id) => {
+    return users[id].rating;
+  };
+
   // end of defintions from HomePage
 
   return (
@@ -168,6 +178,7 @@ function App() {
               recommended={[10, 11, 12]}
               getToyPic={getToyPic}
               goToToy={goToToy}
+              getUserRating={getUserRating}
             />
           </Route>
           <Route exact path="/saved-toys">
@@ -188,6 +199,9 @@ function App() {
               getToyPic={getToyPic}
               currentProfile={currentProfile}
               goToProfile={goToProfile}
+              recommended={recommended}
+              goToToy={goToToy}
+              isCurrentUser={isCurrentUser}
             ></Profile>
           </Route>
           <Route path="/conversation/:id">
@@ -197,6 +211,13 @@ function App() {
               getCounterpart={getCounterpart}
               getMessages={getMessages}
             ></Conversation>
+          </Route>
+          <Route path="/newtoy">
+            <NewToy
+              getToyPic={getToyPic}
+              recommended={recommended}
+              goToToy={goToToy}
+            ></NewToy>
           </Route>
         </Switch>
       </BrowserRouter>

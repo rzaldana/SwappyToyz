@@ -150,7 +150,7 @@ function App() {
                   </Link>
                 </Nav.Link>
 
-                <Nav.Link href="#savedToys">
+                <Nav.Link>
                   <Link className="router-link" to={`/profile/${user}`}>
                     {getUserName(user)}
                     {/* 
@@ -160,7 +160,9 @@ function App() {
                   </Link>
                 </Nav.Link>
 
-                <Nav.Link>Log Out</Nav.Link>
+                <Nav.Link>
+                  <Link className="router-link">Log Out</Link>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

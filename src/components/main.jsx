@@ -293,7 +293,10 @@ export const Main = (props) => {
                   <div className="col-sm-8 text-sm-left mt-3">
                     <p className="mb-0">Uploaded by</p>
 
-                    <Link to={`/profile/${currentToy.ownerId}`}>
+                    <Link
+                      to={`/profile/${currentToy.ownerId}`}
+                      className="router-link-gen"
+                    >
                       <h5>{props.getUserName(currentToy.ownerId)}</h5>
                     </Link>
 

@@ -28,6 +28,11 @@
   color: white;
 }
 
+.router-link:hover {
+  color: #174966;
+  text-decoration: none;
+}
+
 .App-link {
   color: #61dafb;
 }

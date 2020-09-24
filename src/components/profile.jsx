@@ -152,7 +152,10 @@ export const Profile = (props) => {
                 {user.friends.map((friend) => {
                   return (
                     <div className="col-3 mt-2 p-0">
-                      <Link to={`/profile/${friend}`}>
+                      <Link
+                        to={`/profile/${friend}`}
+                        className="router-link-gen"
+                      >
                         <div className="container">
                           <div className="row">
                             <div className="col-12 m-0 p-0 friend-col">

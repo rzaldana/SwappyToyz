@@ -138,7 +138,11 @@ export const Main = (props) => {
                       className="gift-container"
                       style={{ opacity: currentToy.gift ? 1 : 0 }}
                     >
-                      <FontAwesomeIcon className="gift-icon" icon={faGift} />
+                      <FontAwesomeIcon
+                        className="gift-icon"
+                        icon={faGift}
+                        size="xs"
+                      />
                     </div>
                   </OverlayTrigger>
                 }

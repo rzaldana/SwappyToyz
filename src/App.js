@@ -128,7 +128,12 @@ function App() {
           <Navbar expand="lg" variant="dark" className="color-nav">
             <Navbar.Brand>
               <Link className="router-link" to="/">
-                SwappyToyz
+                <div className="logo-container">
+                  <img
+                    src="https://swappytoyz-assets.s3.ca-central-1.amazonaws.com/logo/logo.png"
+                    className="logo"
+                  />
+                </div>
               </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
